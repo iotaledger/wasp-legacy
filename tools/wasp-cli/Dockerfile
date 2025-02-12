@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG GOLANG_IMAGE_TAG=1.22-bullseye
+ARG GOLANG_IMAGE_TAG=1.24-bullseye
 
 # Build stage
 FROM golang:${GOLANG_IMAGE_TAG} AS build
