@@ -259,6 +259,9 @@ func (e *EVMChain) iscStateFromEVMBlockNumberOrHash(blockNumberOrHash *rpc.Block
 	}
 	blockHash, _ := blockNumberOrHash.Hash()
 	block := e.BlockByHash(blockHash)
+	if block == nil {
+		return nil, fmt.Errorf("block with hash %s not found", blockHash)
+	}
 	return e.iscStateFromEVMBlockNumber(block.Number())
 }
 
@@ -807,7 +810,11 @@ func (e *EVMChain) TraceBlockByNumber(blockNumber uint64, config *tracers.TraceC
 
 func (e *EVMChain) getBlockByNumberOrHash(blockNrOrHash rpc.BlockNumberOrHash) (*types.Block, error) {
 	if h, ok := blockNrOrHash.Hash(); ok {
-		return e.BlockByHash(h), nil
+		block := e.BlockByHash(h)
+		if block == nil {
+			return nil, fmt.Errorf("block not found: %v", blockNrOrHash.String())
+		}
+		return block, nil
 	} else if n, ok := blockNrOrHash.Number(); ok {
 		switch n {
 		case rpc.LatestBlockNumber:

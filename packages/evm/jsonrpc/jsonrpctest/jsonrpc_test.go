@@ -90,6 +90,12 @@ func newSoloTestEnv(t testing.TB) *soloTestEnv {
 func TestRPCGetBalance(t *testing.T) {
 	env := newSoloTestEnv(t)
 	_, emptyAddress := solo.NewEthereumAccount()
+
+	{
+		_, err := env.Client.BalanceAtHash(context.Background(), emptyAddress, common.Hash{})
+		require.ErrorContains(env.T, err, "not found")
+	}
+
 	require.Zero(t, env.Balance(emptyAddress).Uint64())
 	wallet, nonEmptyAddress := env.soloChain.NewEthereumAccountWithL2Funds()
 	require.Equal(
