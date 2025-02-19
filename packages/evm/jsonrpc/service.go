@@ -424,6 +424,9 @@ func (e *EthService) NewHeads(ctx context.Context) (*rpc.Subscription, error) {
 }
 
 func (e *EthService) Logs(ctx context.Context, q *RPCFilterQuery) (*rpc.Subscription, error) {
+	if q == nil {
+		q = &RPCFilterQuery{}
+	}
 	notifier, supported := rpc.NotifierFromContext(ctx)
 	if !supported {
 		return &rpc.Subscription{}, rpc.ErrNotificationsUnsupported
