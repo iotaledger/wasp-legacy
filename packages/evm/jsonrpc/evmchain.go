@@ -25,6 +25,7 @@ import (
 	hivedb "github.com/iotaledger/hive.go/kvstore/database"
 	"github.com/iotaledger/hive.go/logger"
 	"github.com/iotaledger/hive.go/runtime/event"
+
 	"github.com/iotaledger/wasp/packages/evm/evmtypes"
 	"github.com/iotaledger/wasp/packages/evm/evmutil"
 	"github.com/iotaledger/wasp/packages/evm/jsonrpc/jsonrpcindex"
@@ -539,6 +540,14 @@ func (e *EVMChain) BlockTransactionCountByNumber(blockNumber *big.Int) (uint64, 
 //nolint:gocyclo
 func (e *EVMChain) Logs(query *ethereum.FilterQuery, params *LogsLimits) ([]*types.Log, error) {
 	e.log.Debugf("Logs(q=%v)", query)
+	if query == nil {
+		query = &ethereum.FilterQuery{}
+	}
+	
+	if params == nil {
+		params = &LogsLimits{}
+	}
+
 	logs := make([]*types.Log, 0)
 
 	// single block query
