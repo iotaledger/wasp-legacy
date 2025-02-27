@@ -62,6 +62,31 @@ var (
 		},
 	}
 
+	L1ForHack = &L1Params{
+		// There are no limits on how big from a size perspective an essence can be, so it is just derived from 32KB - Message fields without payload = max size of the payload
+		MaxPayloadSize: MaxPayloadSize,
+		Protocol: &iotago.ProtocolParameters{
+			Version:     2,
+			NetworkName: "iota",
+			Bech32HRP:   "iota",
+			MinPoWScore: 0,
+			RentStructure: iotago.RentStructure{
+				VByteCost:    500,
+				VBFactorData: 1,
+				VBFactorKey:  10,
+			},
+			TokenSupply: 2779530283277761,
+		},
+		BaseToken: &BaseToken{
+			Name:            "Iota",
+			TickerSymbol:    "MIOTA",
+			Unit:            "MIOTA",
+			Subunit:         "IOTA",
+			Decimals:        6,
+			UseMetricPrefix: false,
+		},
+	}
+
 	l1ParamsLazyInit func()
 )
 

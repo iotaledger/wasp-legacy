@@ -38,20 +38,20 @@ type dependencies struct {
 
 func provide(c *dig.Container) error {
 	if err := c.Provide(func() (*nodebridge.NodeBridge, error) {
-		nodeBridge := nodebridge.NewNodeBridge(
-			Component.Logger(),
-			nodebridge.WithTargetNetworkName(ParamsINX.TargetNetworkName),
-		)
+		// nodeBridge := nodebridge.NewNodeBridge(
+		// 	Component.Logger(),
+		// 	nodebridge.WithTargetNetworkName(ParamsINX.TargetNetworkName),
+		// )
 
-		if err := nodeBridge.Connect(
-			Component.Daemon().ContextStopped(),
-			ParamsINX.Address,
-			ParamsINX.MaxConnectionAttempts,
-		); err != nil {
-			return nil, err
-		}
+		// if err := nodeBridge.Connect(
+		// 	Component.Daemon().ContextStopped(),
+		// 	ParamsINX.Address,
+		// 	ParamsINX.MaxConnectionAttempts,
+		// ); err != nil {
+		// 	return nil, err
+		// }
 
-		return nodeBridge, nil
+		return nil, nil
 	}); err != nil {
 		Component.LogPanic(err)
 	}

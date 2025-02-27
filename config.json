@@ -1,122 +1,159 @@
-{
+ {
   "app": {
-    "checkForUpdates": true,
+    "checkforupdates": true,
     "shutdown": {
-      "stopGracePeriod": "5m",
       "log": {
         "enabled": true,
-        "filePath": "shutdown.log"
-      }
+        "filepath": "shutdown.log"
+      },
+      "stopgraceperiod": 300000000000
     }
   },
-  "logger": {
-    "level": "info",
-    "disableCaller": true,
-    "disableStacktrace": false,
-    "stacktraceLevel": "panic",
-    "encoding": "console",
-    "encodingConfig": {
-      "timeEncoder": "rfc3339"
+  "cache": {
+    "cachesize": "64MiB",
+    "cachestatsinterval": 30000000000,
+    "enabled": true
+  },
+  "chains": {
+    "apicachettl": 300000000000,
+    "awaitreceiptcleanupevery": 100,
+    "broadcastinterval": 0,
+    "broadcastuptonpeers": 2,
+    "consensusdelay": 500000000,
+    "consensusinstsinadvance": 3,
+    "derivealiasoutputbyquorum": true,
+    "mempoolmaxoffledgerinpool": 2000,
+    "mempoolmaxoffledgertopropose": 500,
+    "mempoolmaxonledgerinpool": 1000,
+    "mempoolmaxonledgertopropose": 100,
+    "mempoolmaxtimedinpool": 100,
+    "mempoolonledgerrefreshmininterval": 600000000000,
+    "mempoolttl": 86400000000000,
+    "pipelininglimit": -1,
+    "postponerecoverymilestones": 3,
+    "printstatusperiod": 3000000000,
+    "pullmissingrequestsfromcommittee": true,
+    "recoverytimeout": 20000000000,
+    "redeliveryperiod": 2000000000
+  },
+  "db": {
+    "chainstate": {
+      "cachesize": 33554432,
+      "path": "waspdb/chains/data"
     },
-    "outputPaths": [
-      "stdout"
-    ],
-    "disableEvents": true
+    "debugskiphealthcheck": true,
+    "engine": "rocksdb"
   },
   "inx": {
     "address": "localhost:9029",
-    "maxConnectionAttempts": 30,
-    "targetNetworkName": ""
+    "maxconnectionattempts": 30,
+    "targetnetworkname": ""
   },
-  "db": {
-    "engine": "rocksdb",
-    "chainState": {
-      "path": "waspdb/chains/data"
+  "logger": {
+    "disablecaller": true,
+    "disableevents": true,
+    "disablestacktrace": false,
+    "encoding": "console",
+    "encodingconfig": {
+      "timeencoder": "rfc3339"
     },
-    "debugSkipHealthCheck": true
+    "level": "debug",
+    "outputpaths": [
+      "stdout"
+    ],
+    "stacktracelevel": "panic"
   },
   "p2p": {
-    "identity": {
-      "privateKey": "",
-      "filePath": "waspdb/identity/identity.key"
-    },
     "db": {
       "path": "waspdb/p2pstore"
-    }
-  },
-  "registries": {
-    "chains": {
-      "filePath": "waspdb/chains/chain_registry.json"
     },
-    "dkShares": {
-      "path": "waspdb/dkshares"
-    },
-    "trustedPeers": {
-      "filePath": "waspdb/trusted_peers.json"
-    },
-    "consensusState": {
-      "path": "waspdb/chains/consensus"
+    "identity": {
+      "filepath": "waspdb/identity/identity.key"
     }
   },
   "peering": {
-    "peeringURL": "0.0.0.0:4000",
+    "peeringurl": "0.0.0.0:4000",
     "port": 4000
   },
-  "chains": {
-    "broadcastUpToNPeers": 2,
-    "broadcastInterval": "5s",
-    "apiCacheTTL": "5m",
-    "pullMissingRequestsFromCommittee": true,
-    "deriveAliasOutputByQuorum": true,
-    "pipeliningLimit": -1,
-    "consensusDelay": "500ms"
-  },
-  "wal": {
-    "enabled": true,
-    "path": "waspdb/wal"
-  },
   "profiling": {
-    "enabled": false,
-    "bindAddress": "localhost:6060"
+    "bindaddress": "localhost:6060",
+    "enabled": false
   },
-  "profilingRecorder": {
+  "profilingrecorder": {
     "enabled": false
   },
   "prometheus": {
+    "bindaddress": "0.0.0.0:2112",
+    "enabled": true
+  },
+  "registries": {
+    "chains": {
+      "filepath": "waspdb/chains/chain_registry.json"
+    },
+    "consensusstate": {
+      "path": "waspdb/chains/consensus"
+    },
+    "dkshares": {
+      "path": "waspdb/dkshares"
+    },
+    "trustedpeers": {
+      "filepath": "waspdb/trusted_peers.json"
+    }
+  },
+  "snapshots": {
+    "delay": 20,
+    "localpath": "waspdb/snap",
+    "networkpaths": [],
+    "period": 0,
+    "snapshotstoload": []
+  },
+  "statemanager": {
+    "blockcacheblockcleaningperiod": 60000000000,
+    "blockcacheblocksincacheduration": 3600000000000,
+    "blockcachemaxsize": 1000,
+    "pruningmaxstatestodelete": 0,
+    "pruningminstatestokeep": 0,
+    "statemanagergetblocknodecount": 5,
+    "statemanagergetblockretry": 3000000000,
+    "statemanagerrequestcleaningperiod": 300000000000,
+    "statemanagerstatuslogperiod": 60000000000,
+    "statemanagertimertickperiod": 1000000000
+  },
+  "validator": {
+    "address": ""
+  },
+  "wal": {
     "enabled": true,
-    "bindAddress": "0.0.0.0:2112",
-    "nodeMetrics": true,
-    "nodeConnMetrics": true,
-    "blockWALMetrics": true,
-    "restAPIMetrics": true,
-    "goMetrics": true,
-    "processMetrics": true,
-    "promhttpMetrics": true
+    "loadtostore": false,
+    "path": "waspdb/wal"
   },
   "webapi": {
-    "enabled": true,
-    "bindAddress": "0.0.0.0:9090",
-    "nodeOwnerAddresses": [],
+    "accountdumpspath": "waspdb/account_dumps",
     "auth": {
-      "scheme": "jwt",
       "jwt": {
-        "duration": "24h"
+        "duration": 86400000000000
       },
-      "basic": {
-        "username": "wasp"
-      },
-      "ip": {
-        "whitelist": [
-          "0.0.0.0"
-        ]
-      }
+      "scheme": "jwt"
     },
+    "bindaddress": "0.0.0.0:9090",
+    "debugrequestloggerenabled": true,
+    "enabled": true,
+    "indexdbpath": "waspdb/chains/index",
     "limits": {
-      "timeout": "30s",
-      "readTimeout": "10s",
-      "writeTimeout": "10s",
-      "maxBodyLength": "2M"
-    },
-    "debugRequestLoggerEnabled": false
+      "confirmedstatelagthreshold": 2,
+      "jsonrpc": {
+        "maxblocksinlogsfilterrange": 1000,
+        "maxlogsinresult": 10000,
+        "websocketclientblockduration": 300000000000,
+        "websocketconnectioncleanupduration": 300000000000,
+        "websocketratelimitburst": 5,
+        "websocketratelimitmessagespersecond": 20
+      },
+      "maxbodylength": "2M",
+      "maxtopicsubscriptionsperclient": 0,
+      "readtimeout": 10000000000,
+      "timeout": 30000000000,
+      "writetimeout": 60000000000
+    }
   }
 }

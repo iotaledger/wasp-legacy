@@ -92,12 +92,60 @@ func (nc *nodeConnection) RefreshOnLedgerRequests(ctx context.Context, chainID i
 	}
 }
 
+var _ chain.NodeConnection = &dummyNC{}
+
+type dummyNC struct{}
+
+// AttachChain implements chain.NodeConnection.
+func (d *dummyNC) AttachChain(ctx context.Context, chainID isc.ChainID, recvRequestCB chain.RequestOutputHandler, recvAliasOutput chain.AliasOutputHandler, recvMilestone chain.MilestoneHandler, onChainConnect func(), onChainDisconnect func()) {
+	return
+}
+
+// GetBech32HRP implements chain.NodeConnection.
+func (d *dummyNC) GetBech32HRP() iotago.NetworkPrefix {
+	return parameters.L1ForHack.Protocol.Bech32HRP
+}
+
+// GetL1Params implements chain.NodeConnection.
+func (d *dummyNC) GetL1Params() *parameters.L1Params {
+	return parameters.L1ForHack
+}
+
+// GetL1ProtocolParams implements chain.NodeConnection.
+func (d *dummyNC) GetL1ProtocolParams() *iotago.ProtocolParameters {
+	return parameters.L1ForHack.Protocol
+}
+
+// PublishTX implements chain.NodeConnection.
+func (d *dummyNC) PublishTX(ctx context.Context, chainID isc.ChainID, tx *iotago.Transaction, callback chain.TxPostHandler) error {
+	panic("unimplemented")
+}
+
+// RefreshOnLedgerRequests implements chain.NodeConnection.
+func (d *dummyNC) RefreshOnLedgerRequests(ctx context.Context, chainID isc.ChainID) {
+	return
+}
+
+// Run implements chain.NodeConnection.
+func (d *dummyNC) Run(ctx context.Context) error {
+	return nil
+}
+
+// WaitUntilInitiallySynced implements chain.NodeConnection.
+func (d *dummyNC) WaitUntilInitiallySynced(context.Context) error {
+	return nil
+}
+
 func New(
 	ctx context.Context,
 	log *logger.Logger,
 	nodeBridge *nodebridge.NodeBridge,
 	shutdownHandler *shutdown.ShutdownHandler,
 ) (chain.NodeConnection, error) {
+	if nodeBridge == nil {
+		parameters.InitL1(parameters.L1ForHack)
+		return &dummyNC{}, nil
+	}
 	ctxIndexer, cancelIndexer := context.WithTimeout(ctx, indexerPluginAvailableTimeout)
 	defer cancelIndexer()
 
