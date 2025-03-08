@@ -254,7 +254,7 @@ func parameterToJson(obj interface{}) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return string(jsonBuf), err
+	return string(jsonBuf), nil
 }
 
 // callAPI do the request.

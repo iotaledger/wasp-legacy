@@ -38,5 +38,5 @@ func AssetsFromAPIResponse(assetsResponse *apiclient.AssetsResponse) (*isc.Asset
 		})
 	}
 
-	return assets, err
+	return assets, nil
 }
