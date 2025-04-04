@@ -169,4 +169,4 @@ release:
   prerelease: auto
   github:
     owner: iotaledger
-    name: wasp
+    name: wasp-legacy
