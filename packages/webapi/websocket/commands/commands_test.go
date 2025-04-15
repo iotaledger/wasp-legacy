@@ -88,7 +88,7 @@ func TestSuccessfulUnsubscription(t *testing.T) {
 	require.False(t, manager.subscriptionManager.TopicHasSubscribers("TEST"))
 }
 
-// TestFailingSubscription validates the returned and handled error
+// TestFailingSubscriptionDueToFailedSend validates the returned and handled error
 // As we have established no actual websocket connection, the response should always fail.
 // In this test we force the context to be canceled to ignore timeouts.
 func TestFailingSubscriptionDueToFailedSend(t *testing.T) {
