@@ -96,7 +96,7 @@ func TestFailingSubscriptionDueToFailedSend(t *testing.T) {
 
 	client := websockethub.NewClient(hub, nil, func(client *websockethub.Client) {}, func(client *websockethub.Client) {})
 
-	// Force a fake cancelation of the websocket hub
+	// Force a fake cancellation of the websocket hub
 	cancel()
 
 	err := sendNodeCommand(manager, client, SubscriptionCommand{

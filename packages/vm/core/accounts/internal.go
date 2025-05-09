@@ -34,7 +34,7 @@ const (
 	// prefixBaseTokens | <accountID> stores the amount of base tokens (big.Int)
 	// Covered in: TestFoundries
 	prefixBaseTokens = "b"
-	// prefixBaseTokens | <accountID> stores a map of <nativeTokenID> => big.Int
+	// PrefixNativeTokens | <accountID> stores a map of <nativeTokenID> => big.Int
 	// Covered in: TestFoundries
 	PrefixNativeTokens = "t"
 
