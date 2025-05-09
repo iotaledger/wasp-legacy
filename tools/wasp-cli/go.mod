@@ -12,7 +12,7 @@ require (
 	github.com/99designs/keyring v1.2.2
 	github.com/awnumar/memguard v0.22.5
 	github.com/dvsekhvalnov/jose2go v1.7.0
-	github.com/ethereum/go-ethereum v1.13.13
+	github.com/ethereum/go-ethereum v1.14.7
 	github.com/hashicorp/go-version v1.7.0
 	github.com/iotaledger/hive.go/logger v0.0.0-20240319170702-c7591bb5f9f2
 	github.com/iotaledger/iota.go/v3 v3.0.0-rc.3
