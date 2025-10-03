@@ -19,7 +19,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/gorilla/websocket v1.5.3
 	github.com/hashicorp/golang-lru/v2 v2.0.7
-	github.com/holiman/uint256 v1.3.1
+	github.com/holiman/uint256 v1.3.2
 	github.com/iotaledger/hive.go/app v0.0.0-20240319170702-c7591bb5f9f2
 	github.com/iotaledger/hive.go/constraints v0.0.0-20240319170702-c7591bb5f9f2
 	github.com/iotaledger/hive.go/crypto v0.0.0-20240319170702-c7591bb5f9f2
